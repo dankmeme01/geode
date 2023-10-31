@@ -317,7 +317,7 @@ class CCCircleWave : cocos2d::CCNode {
     virtual void updateTweenAction(float dt, const char* key) = mac 0xbd960, win 0x16f90;
 
     cocos2d::CCNode* m_child;
-    PAD = win 0x4;
+    PAD = win 0x4, mac 0x4;
     float m_currentRadius;
     float m_currentOpacity;
     cocos2d::ccColor3B m_color;
