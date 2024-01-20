@@ -31,7 +31,6 @@ private:
     GeodeNodeMetadata() : m_fieldContainer(new FieldContainer()) {}
 
     virtual ~GeodeNodeMetadata() {
-        geode::log::debug("destructing GeodeNodeMetadata, this: {}, field container: {:X}, uobj: {:X}", this, (uintptr_t)(void*)m_fieldContainer, (uintptr_t)(void*)m_userObject);
         delete m_fieldContainer;
     }
 

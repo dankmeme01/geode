@@ -159,16 +159,26 @@ __attribute__((constructor)) void _entry() {
 }
 
 #include <Geode/modify/CCObject.hpp>
+#include <Geode/modify/MenuLayer.hpp>
 class $modify(cocos2d::CCObject) {
     void release() {
-        log::debug("release is {} with retainCount {}", this, this->retainCount());
-        cocos2d::CCObject::release();
+        // log::debug("release is {} with retainCount {}", this, this->retainCount());
+        // cocos2d::CCObject::release();
         // leaky leaky
     }
 
     void retain() {
-        log::debug("retain is {} with retainCount {}", this, this->retainCount());
-        cocos2d::CCObject::retain();
+        // log::debug("retain is {} with retainCount {}", this, this->retainCount());
+        // cocos2d::CCObject::retain();
     }
 };
 
+class $modify(MenuLayer) {
+    void onMoreGames(cocos2d::CCObject* sender) {
+        auto* data = operator new(42);
+        using OpDelete = void (*)(void*);
+        OpDelete opdelete = (OpDelete)(geode::base::get() + 0x7a7c33);
+        opdelete(data);
+        log::debug("wow. it didnt crash");
+    }
+}
