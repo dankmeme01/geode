@@ -161,13 +161,13 @@ __attribute__((constructor)) void _entry() {
 #include <Geode/modify/CCObject.hpp>
 class $modify(cocos2d::CCObject) {
     void release() {
-        // log::debug("release is {} with retainCount {}", this, this->retainCount());
-        // cocos2d::CCObject::release();
+        log::debug("release is {} with retainCount {}", this, this->retainCount());
+        cocos2d::CCObject::release();
         // leaky leaky
     }
 
     void retain() {
-        // log::debug("retain is {} with retainCount {}", this, this->retainCount());
-        // cocos2d::CCObject::retain();
+        log::debug("retain is {} with retainCount {}", this, this->retainCount());
+        cocos2d::CCObject::retain();
     }
 };
