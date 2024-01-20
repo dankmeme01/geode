@@ -158,6 +158,18 @@ __attribute__((constructor)) void _entry() {
         return;
 }
 
+void* operator new(size_t size) {
+    using OpNew = void*(*)(size_t);
+    static auto gdop = (OpNew)(geode::base::get() + 0x7a7c4b);
+    return gdop(size);
+}
+
+void operator delete(void* memory) noexcept {
+    using OpDelete = void(*)(void*);
+    static auto gdop = (OpDelete)(geode::base::get() + 0x7a7c33);
+    gdop(memory);
+}
+
 #include <Geode/modify/CCObject.hpp>
 class $modify(cocos2d::CCObject) {
     void release() {
