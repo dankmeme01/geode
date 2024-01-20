@@ -158,15 +158,17 @@ __attribute__((constructor)) void _entry() {
         return;
 }
 
-static_assert(sizeof(cocos2d::CCNode) == 0x140, "ccnode size");
-static_assert(offsetof(cocos2d::CCNode, m_pUserObject) == 0xe8, "puserobject");
-
 #include <Geode/modify/CCObject.hpp>
 class $modify(cocos2d::CCObject) {
     void release() {
-        log::debug("this is {}", this);
+        log::debug("release is {} with retainCount {}", this, this->retainCount());
         cocos2d::CCObject::release();
         // leaky leaky
+    }
+
+    void retain() {
+        log::debug("retain is {} with retainCount {}", this, this->retainCount());
+        cocos2d::CCObject::retain();
     }
 };
 
