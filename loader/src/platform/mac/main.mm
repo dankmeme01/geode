@@ -157,3 +157,10 @@ __attribute__((constructor)) void _entry() {
     if (!loadGeode())
         return;
 }
+
+#include <Geode/modify/CCObject.hpp>
+class $modify(cocos2d::CCObject) {
+    void release() {
+        // leaky leaky
+    }
+};
