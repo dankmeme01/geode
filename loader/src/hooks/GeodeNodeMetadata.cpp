@@ -31,7 +31,7 @@ private:
     GeodeNodeMetadata() : m_fieldContainer(new FieldContainer()) {}
 
     virtual ~GeodeNodeMetadata() {
-        delete m_fieldContainer;
+        // delete m_fieldContainer;
     }
 
 public:
