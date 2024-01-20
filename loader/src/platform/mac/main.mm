@@ -159,15 +159,11 @@ __attribute__((constructor)) void _entry() {
 }
 
 void* operator new(size_t size) {
-    using OpNew = void*(*)(size_t);
-    static auto gdop = (OpNew)(geode::base::get() + 0x7a7c4b);
-    return gdop(size);
+    return malloc(size);
 }
 
 void operator delete(void* memory) noexcept {
-    using OpDelete = void(*)(void*);
-    static auto gdop = (OpDelete)(geode::base::get() + 0x7a7c33);
-    gdop(memory);
+    free(memory);
 }
 
 #include <Geode/modify/CCObject.hpp>
