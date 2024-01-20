@@ -9,9 +9,7 @@ $execute {
     // layers, which fail on user layers due to typeinfo not matching
 
     #if defined(GEODE_IS_MACOS)
-        (void)Mod::get()->patch(
-            reinterpret_cast<void*>(base::get() + 0x603948), toByteArray(&cast::typeinfoCastInternal)
-        );
+        (void) Mod::get()->hook(reinterpret_cast<void*>(base::get() + 0x7a7c9f), &cast::typeinfoCastInternal, "__dynamic_cast");
     #elif defined(GEODE_IS_ANDROID)
         void* handle = dlopen("libcocos2dcpp.so", RTLD_LAZY | RTLD_NOLOAD);
         void* dynamicCastAddr = dlsym(handle, "__dynamic_cast");

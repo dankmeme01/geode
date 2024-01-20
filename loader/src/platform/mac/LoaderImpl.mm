@@ -1,11 +1,11 @@
+#import <Foundation/Foundation.h>
 #include <Geode/loader/IPC.hpp>
 #include <Geode/loader/Log.hpp>
 #include <iostream>
 #include <loader/LoaderImpl.hpp>
-#include <loader/ModImpl.hpp>
-#import <Foundation/Foundation.h>
-#include <sys/stat.h>
 #include <loader/LogImpl.hpp>
+#include <loader/ModImpl.hpp>
+#include <sys/stat.h>
 
 using namespace geode::prelude;
 
@@ -34,7 +34,8 @@ void Loader::Impl::logConsoleMessageWithSeverity(std::string const& msg, Severit
             case Severity::Error: colorcode = 31; break;
             default: colorcode = 35; break;
         }
-        auto newMsg = "\033[1;" + std::to_string(colorcode) + "m" + msg.substr(0, 8) + "\033[0m" + msg.substr(8);
+        auto newMsg = "\033[1;" + std::to_string(colorcode) + "m" + msg.substr(0, 8) + "\033[0m" +
+            msg.substr(8);
 
         std::cout << newMsg << "\n" << std::flush;
     }
@@ -47,7 +48,8 @@ void Loader::Impl::openPlatformConsole() {
     int outFd = mkstemp(&outFile[0]);
 
     auto script = outFile + ".command";
-    auto scriptContent = fmt::format(R"(
+    auto scriptContent = fmt::format(
+        R"(
         #!/bin/sh
         echo -n -e "\033]0;Geode Console {}\007"
         tail -f {} &
@@ -59,7 +61,12 @@ void Loader::Impl::openPlatformConsole() {
             if (count windows) is 0 then quit
         end tell' &
         exit
-    )", getpid(), outFile, getpid(), getpid());
+    )",
+        getpid(),
+        outFile,
+        getpid(),
+        getpid()
+    );
 
     if (file::writeString(script, scriptContent)) {
         chmod(script.c_str(), 0777);
@@ -68,14 +75,10 @@ void Loader::Impl::openPlatformConsole() {
 
         NSTask* task = [[NSTask alloc] init];
         task.launchPath = @"/usr/bin/open";
-        task.arguments = @[[NSString stringWithUTF8String:script.c_str()]];
+        task.arguments = @[ [NSString stringWithUTF8String:script.c_str()] ];
         [task launch];
 
-        m_platformData = new MacConsoleData {
-            outFile,
-            script,
-            outFd
-        };
+        m_platformData = new MacConsoleData{outFile, script, outFd};
     }
 
     m_platformConsoleOpen = true;
@@ -88,7 +91,7 @@ void Loader::Impl::openPlatformConsole() {
 void Loader::Impl::closePlatformConsole() {
     if (m_platformData) {
         auto consoleData = reinterpret_cast<MacConsoleData*>(m_platformData);
-        close(consoleData->logFd);
+        ::close(consoleData->logFd);
         unlink(consoleData->logFile.c_str());
         unlink(consoleData->scriptFile.c_str());
 
@@ -137,6 +140,12 @@ bool Loader::Impl::userTriedToLoadDLLs() const {
 }
 
 void Loader::Impl::addNativeBinariesPath(ghc::filesystem::path const& path) {
-    log::warn("LoaderImpl::addNativeBinariesPath not implement on this platform, not adding path {}", path.string());
+    log::warn(
+        "LoaderImpl::addNativeBinariesPath not implement on this platform, not adding path {}",
+        path.string()
+    );
 }
 
+std::string Loader::Impl::getGameVersion() {
+    return "2.200"; // TODO implement this
+}
