@@ -459,22 +459,6 @@ CCArray::CCArray(unsigned int capacity)
     initWithCapacity(capacity);
 }
 
-CCArray* CCArray::create()
-{
-    CCArray* pArray = new CCArray();
-
-    if (pArray && pArray->init())
-    {
-        pArray->autorelease();
-    }
-    else
-    {
-        CC_SAFE_DELETE(pArray);
-    }
-    
-    return pArray;
-}
-
 CCArray* CCArray::createWithObject(CCObject* pObject)
 {
     CCArray* pArray = new CCArray();
@@ -522,22 +506,6 @@ CCArray* CCArray::createWithArray(CCArray* otherArray)
     CCArray* pRet = (CCArray*)otherArray->copy();
     pRet->autorelease();
     return pRet;
-}
-
-CCArray* CCArray::createWithCapacity(unsigned int capacity)
-{
-    CCArray* pArray = new CCArray();
-    
-    if (pArray && pArray->initWithCapacity(capacity))
-    {
-        pArray->autorelease();
-    }
-    else
-    {
-        CC_SAFE_DELETE(pArray);
-    }
-    
-    return pArray;
 }
 
 CCArray* CCArray::createWithContentsOfFile(const char* pFileName)
@@ -601,13 +569,6 @@ bool CCArray::initWithObjects(CCObject* pObject, ...)
     return bRet;
 }
 
-bool CCArray::initWithCapacity(unsigned int capacity)
-{
-    ccArrayFree(data);
-    data = ccArrayNew(capacity);
-    return true;
-}
-
 bool CCArray::initWithArray(CCArray* otherArray)
 {
     ccArrayFree(data);
@@ -636,13 +597,6 @@ unsigned int CCArray::capacity() const
 unsigned int CCArray::indexOfObject(CCObject* object) const
 {
     return ccArrayGetIndexOfObject(data, object);
-}
-
-CCObject* CCArray::objectAtIndex(unsigned int index)
-{
-    CCAssert(index < data->num, "index out of range in objectAtIndex()");
-
-    return data->arr[index];
 }
 
 CCObject* CCArray::lastObject()
@@ -687,30 +641,15 @@ bool CCArray::isEqualToArray(CCArray* otherArray)
     return true;
 }
 
-void CCArray::addObject(CCObject* object)
-{
-    ccArrayAppendObjectWithResize(data, object);
-}
-
 void CCArray::addObjectsFromArray(CCArray* otherArray)
 {
     ccArrayAppendArrayWithResize(data, otherArray->data);
-}
-
-void CCArray::insertObject(CCObject* object, unsigned int index)
-{
-    ccArrayInsertObjectAtIndex(data, object, index);
 }
 
 void CCArray::removeLastObject(bool bReleaseObj)
 {
     CCAssert(data->num, "no objects added");
     ccArrayRemoveObjectAtIndex(data, data->num-1, bReleaseObj);
-}
-
-void CCArray::removeObject(CCObject* object, bool bReleaseObj/* = true*/)
-{
-    ccArrayRemoveObject(data, object, bReleaseObj);
 }
 
 void CCArray::removeObjectAtIndex(unsigned int index, bool bReleaseObj)
@@ -789,27 +728,5 @@ void CCArray::reduceMemoryFootprint()
 
 CCArray::~CCArray()
 {
-    ccArrayFree(data);
-}
-
-CCObject* CCArray::copyWithZone(CCZone* pZone)
-{
-    CCAssert(pZone == NULL, "CCArray should not be inherited.");
-    CCArray* pArray = new CCArray();
-    pArray->initWithCapacity(this->data->num > 0 ? this->data->num : 1);
-
-    CCObject* pObj = NULL;
-    CCObject* pTmpObj = NULL;
-    CCARRAY_FOREACH(this, pObj)
-    {
-        pTmpObj = pObj->copy();
-        pArray->addObject(pTmpObj);
-        pTmpObj->release();
-    }
-    return pArray;
-}
-
-void CCArray::acceptVisitor(CCDataVisitor &visitor)
-{
-    visitor.visit(this);
+//    ccArrayFree(data);
 }

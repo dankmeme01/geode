@@ -329,6 +329,7 @@ protected:
         bool m_bIsBatched;
         CCArray* m_pTargetArray;
         CCTexture2D* m_pSomeTexture;
+	void* m_unknown; // 2.2 addition, position and type are uncertain
     )
 
 };

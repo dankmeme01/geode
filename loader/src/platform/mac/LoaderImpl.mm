@@ -93,7 +93,7 @@ void console::open() {
 
 void console::close() {
     if (s_isOpen) {
-        close(s_platformData.logFd);
+        ::close(s_platformData.logFd);
         unlink(s_platformData.logFile.c_str());
         unlink(s_platformData.scriptFile.c_str());
     }
@@ -142,3 +142,6 @@ void Loader::Impl::addNativeBinariesPath(ghc::filesystem::path const& path) {
     log::warn("LoaderImpl::addNativeBinariesPath not implement on this platform, not adding path {}", path.string());
 }
 
+std::string Loader::Impl::getGameVersion() {
+    return "2.200"; // TODO implement
+}

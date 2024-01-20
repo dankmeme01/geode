@@ -12,6 +12,7 @@
 #include "../../loader/LoaderImpl.hpp"
 #include <thread>
 #include <variant>
+#include <loader/updater.hpp>
 
 using namespace geode::prelude;
 
@@ -119,7 +120,7 @@ void applicationDidFinishLaunchingHook(void* self, SEL sel, NSNotification* noti
         0x41, 0x57
     };
 
-    auto res = tulip::hook::writeMemory((void*)(base::get() + 0x69a0), patchBytes.data(), 6);
+    auto res = tulip::hook::writeMemory((void*)(base::get() + 0xb030), patchBytes.data(), 6);
     if (!res)
         return;
     
@@ -127,19 +128,20 @@ void applicationDidFinishLaunchingHook(void* self, SEL sel, NSNotification* noti
     if (exitCode != 0)
         return;
 
-    return reinterpret_cast<void(*)(void*, SEL, NSNotification*)>(geode::base::get() + 0x69a0)(self, sel, notification);
+    return reinterpret_cast<void(*)(void*, SEL, NSNotification*)>(geode::base::get() + 0xb030)(self, sel, notification);
 }
 
 
 bool loadGeode() {
-    auto detourAddr = reinterpret_cast<uintptr_t>(&applicationDidFinishLaunchingHook) - geode::base::get() - 0x69a5;
+    auto detourAddr = reinterpret_cast<uintptr_t>(&applicationDidFinishLaunchingHook) - geode::base::get() - 0xb035;
     auto detourAddrPtr = reinterpret_cast<uint8_t*>(&detourAddr);
+
 
     std::array<uint8_t, 5> patchBytes = {
         0xe9, detourAddrPtr[0], detourAddrPtr[1], detourAddrPtr[2], detourAddrPtr[3]
     };
 
-    auto res = tulip::hook::writeMemory((void*)(base::get() + 0x69a0), patchBytes.data(), 5);
+    auto res = tulip::hook::writeMemory((void*)(base::get() + 0xb030), patchBytes.data(), 5);
     if (!res)
         return false;
     
