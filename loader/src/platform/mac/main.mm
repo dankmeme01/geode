@@ -158,6 +158,8 @@ __attribute__((constructor)) void _entry() {
         return;
 }
 
+static_assert(sizeof(cocos2d::CCNode) == 0x140, "ccnode size");
+
 #include <Geode/modify/CCObject.hpp>
 class $modify(cocos2d::CCObject) {
     void release() {
