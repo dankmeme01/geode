@@ -169,8 +169,8 @@ void operator delete(void* memory) noexcept {
 #include <Geode/modify/CCObject.hpp>
 class $modify(cocos2d::CCObject) {
     void release() {
-        // log::debug("release is {} with retainCount {}", this, this->retainCount());
-        // cocos2d::CCObject::release();
+        log::debug("release is {} with retainCount {}", this, this->retainCount());
+        cocos2d::CCObject::release();
         // leaky leaky
     }
 
