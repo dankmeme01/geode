@@ -135,21 +135,21 @@ class CC_DLL CCNode : public CCObject
 public:
     /// @{
     /// @name Constructor, Distructor and Initializers
-    
+
     /**
      * Default constructor
      * @js ctor
      */
     CCNode(void);
     GEODE_CUSTOM_CONSTRUCTOR_COCOS(CCNode, CCObject)
-    
+
     /**
      * Default destructor
      * @js NA
      * @lua NA
      */
     virtual ~CCNode(void);
-    
+
     /**
      *  Initializes the instance of CCNode
      *  @return Whether the initialization was successful.
@@ -160,21 +160,21 @@ public:
      * @return A initialized node which is marked as "autorelease".
      */
     static CCNode * create(void);
-    
+
     /**
      * Gets the description string. It makes debugging easier.
      * @return A string terminated with '\0'
      * @js NA
      */
     const char* description(void);
-    
+
     /// @} end of initializers
-    
-    
-    
+
+
+
     /// @{
     /// @name Setters & Getters for Graphic Peroperties
-    
+
     /**
      * Sets the Z order which stands for the drawing order, and reorder this node in its parent's children array.
      *
@@ -245,7 +245,7 @@ public:
      */
     virtual float getScaleX();
 
-    
+
     /**
      * Changes the scale factor on Y axis of this node
      *
@@ -259,11 +259,11 @@ public:
      *
      * @see setScaleY(float)
      *
-     * @return The scale factor on Y axis. 
+     * @return The scale factor on Y axis.
      */
     virtual float getScaleY();
 
-    
+
     /**
      * Changes both X and Y scale factor of the node.
      *
@@ -281,7 +281,7 @@ public:
      * @return The scale factor of the node.
      */
     virtual float getScale();
-    
+
 
     /**
      * Changes both X and Y scale factor of the node.
@@ -293,7 +293,7 @@ public:
      */
     virtual void setScale(float fScaleX,float fScaleY);
 
-    
+
     /**
      * Changes the position (x,y) of the node in OpenGL coordinates
      *
@@ -311,7 +311,7 @@ public:
     virtual void setPosition(const CCPoint &position);
     /**
      * Gets the position (x,y) of the node in OpenGL coordinates
-     * 
+     *
      * @see setPosition(const CCPoint&)
      *
      * @return The position (x,y) of the node in OpenGL coordinates
@@ -321,7 +321,7 @@ public:
      * Sets position in a more efficient way.
      *
      * Passing two numbers (x,y) is much efficient than passing CCPoint object.
-     * This method is binded to lua and javascript. 
+     * This method is binded to lua and javascript.
      * Passing a number is 10 times faster than passing a object from lua to c++
      *
      * @code
@@ -349,8 +349,8 @@ public:
     virtual float getPositionX(void);
     virtual void  setPositionY(float y);
     virtual float getPositionY(void);
-    
-    
+
+
     /**
      * Changes the X skew angle of the node in degrees.
      *
@@ -370,7 +370,7 @@ public:
      */
     virtual float getSkewX();
 
-    
+
     /**
      * Changes the Y skew angle of the node in degrees.
      *
@@ -390,7 +390,7 @@ public:
      */
     virtual float getSkewY();
 
-    
+
     /**
      * Sets the anchor point in percent.
      *
@@ -403,7 +403,7 @@ public:
      * @param anchorPoint   The anchor point of node.
      */
     virtual void setAnchorPoint(const CCPoint& anchorPoint);
-    /** 
+    /**
      * Returns the anchor point in percent.
      *
      * @see setAnchorPoint(const CCPoint&)
@@ -413,14 +413,14 @@ public:
     virtual const CCPoint& getAnchorPoint();
     /**
      * Returns the anchorPoint in absolute pixels.
-     * 
+     *
      * @warning You can only read it. If you wish to modify it, use anchorPoint instead.
      * @see getAnchorPoint()
      *
      * @return The anchor point in absolute pixels.
      */
     virtual const CCPoint& getAnchorPointInPoints();
-    
+
     /**
      * Sets the untransformed size of the node.
      *
@@ -458,13 +458,13 @@ public:
      */
     virtual bool isVisible();
 
-    
-    /** 
-     * Sets the rotation (angle) of the node in degrees. 
-     * 
-     * 0 is the default rotation angle. 
+
+    /**
+     * Sets the rotation (angle) of the node in degrees.
+     *
+     * 0 is the default rotation angle.
      * Positive values rotate node clockwise, and negative values for anti-clockwise.
-     * 
+     *
      * @param fRotation     The roration of the node in degrees.
      */
     virtual void setRotation(float fRotation);
@@ -477,13 +477,13 @@ public:
      */
     virtual float getRotation();
 
-    
-    /** 
+
+    /**
      * Sets the X rotation (angle) of the node in degrees which performs a horizontal rotational skew.
-     * 
-     * 0 is the default rotation angle. 
+     *
+     * 0 is the default rotation angle.
      * Positive values rotate node clockwise, and negative values for anti-clockwise.
-     * 
+     *
      * @param fRotationX    The X rotation in degrees which performs a horizontal rotational skew.
      */
     virtual void setRotationX(float fRotaionX);
@@ -496,11 +496,11 @@ public:
      */
     virtual float getRotationX();
 
-    
-    /** 
+
+    /**
      * Sets the Y rotation (angle) of the node in degrees which performs a vertical rotational skew.
-     * 
-     * 0 is the default rotation angle. 
+     *
+     * 0 is the default rotation angle.
      * Positive values rotate node clockwise, and negative values for anti-clockwise.
      *
      * @param fRotationY    The Y rotation in degrees.
@@ -515,7 +515,7 @@ public:
      */
     virtual float getRotationY();
 
-    
+
     /**
      * Sets the arrival order when this node has a same ZOrder with other children.
      *
@@ -535,8 +535,8 @@ public:
      * @return The arrival order.
      */
     virtual unsigned int getOrderOfArrival();
-    
-    
+
+
     /**
      * Sets the state of OpenGL server side.
      *
@@ -551,8 +551,8 @@ public:
      * @js NA
      */
     virtual ccGLServerState getGLServerState();
-    
-    
+
+
     /**
      * Sets whether the anchor point will be (0,0) when you position this node.
      *
@@ -571,14 +571,14 @@ public:
      * @return true if the anchor point will be (0,0) when you position this node.
      */
     virtual bool isIgnoreAnchorPointForPosition();
-    
+
     /// @}  end of Setters & Getters for Graphic Peroperties
-    
-    
+
+
     /// @{
     /// @name Children and Parent
-    
-    /** 
+
+    /**
      * Adds a child to the container with z-order as 0.
      *
      * If the child is added to a 'running' node, then 'onEnter' and 'onEnterTransitionDidFinish' will be called immediately.
@@ -586,7 +586,7 @@ public:
      * @param child A child node
      */
     virtual void addChild(CCNode * child);
-    /** 
+    /**
      * Adds a child to the container with a z-order
      *
      * If the child is added to a 'running' node, then 'onEnter' and 'onEnterTransitionDidFinish' will be called immediately.
@@ -595,7 +595,7 @@ public:
      * @param zOrder    Z order for drawing priority. Please refer to setZOrder(int)
      */
     virtual void addChild(CCNode * child, int zOrder);
-    /** 
+    /**
      * Adds a child to the container with z order and tag
      *
      * If the child is added to a 'running' node, then 'onEnter' and 'onEnterTransitionDidFinish' will be called immediately.
@@ -628,14 +628,14 @@ public:
      * @returns An array of children
      */
     virtual CCArray* getChildren();
-    
-    /** 
+
+    /**
      * Get the amount of children.
      *
      * @return The amount of children.
      */
     virtual unsigned int getChildrenCount(void) const;
-    
+
     /**
      * Sets the parent node
      *
@@ -644,24 +644,24 @@ public:
     virtual void setParent(CCNode* parent);
     /**
      * Returns a pointer to the parent node
-     * 
+     *
      * @see setParent(CCNode*)
      *
      * @returns A pointer to the parnet node
      */
     virtual CCNode* getParent();
-    
-    
+
+
     ////// REMOVES //////
-    
-    /** 
+
+    /**
      * Removes this node itself from its parent node with a cleanup.
      * If the node orphan, then nothing happens.
      * @see removeFromParentAndCleanup(bool)
      */
     virtual void removeFromParent();
-    /** 
-     * Removes this node itself from its parent node. 
+    /**
+     * Removes this node itself from its parent node.
      * If the node orphan, then nothing happens.
      * @param cleanup   true if all actions and callbacks on this node should be removed, false otherwise.
      * @js removeFromParent
@@ -670,7 +670,7 @@ public:
 
     RT_ADD( virtual void removeMeAndCleanup(void);  )
 
-    /** 
+    /**
      * Removes a child from the container with a cleanup
      *
      * @see removeChild(CCNode, bool)
@@ -678,14 +678,14 @@ public:
      * @param child     The child node which will be removed.
      */
     virtual void removeChild(CCNode* child);
-    /** 
+    /**
      * Removes a child from the container. It will also cleanup all running actions depending on the cleanup parameter.
-     * 
+     *
      * @param child     The child node which will be removed.
      * @param cleanup   true if all running actions and callbacks on the child node will be cleanup, false otherwise.
      */
     virtual void removeChild(CCNode* child, bool cleanup);
-    /** 
+    /**
      * Removes a child from the container by tag value with a cleanup.
      *
      * @see removeChildByTag(int, bool)
@@ -693,52 +693,52 @@ public:
      * @param tag       An interger number that identifies a child node
      */
     virtual void removeChildByTag(int tag);
-    /** 
+    /**
      * Removes a child from the container by tag value. It will also cleanup all running actions depending on the cleanup parameter
-     * 
+     *
      * @param tag       An interger number that identifies a child node
-     * @param cleanup   true if all running actions and callbacks on the child node will be cleanup, false otherwise. 
+     * @param cleanup   true if all running actions and callbacks on the child node will be cleanup, false otherwise.
      */
     virtual void removeChildByTag(int tag, bool cleanup);
-    /** 
+    /**
      * Removes all children from the container with a cleanup.
      *
      * @see removeAllChildrenWithCleanup(bool)
      */
     virtual void removeAllChildren();
-    /** 
+    /**
      * Removes all children from the container, and do a cleanup to all running actions depending on the cleanup parameter.
      *
      * @param cleanup   true if all running actions on all children nodes should be cleanup, false oterwise.
      * @js removeAllChildren
      */
     virtual void removeAllChildrenWithCleanup(bool cleanup);
-    
-    /** 
+
+    /**
      * Reorders a child according to a new z value.
      *
      * @param child     An already added child node. It MUST be already added.
      * @param zOrder    Z order for drawing priority. Please refer to setZOrder(int)
      */
     virtual void reorderChild(CCNode * child, int zOrder);
-    
-    /** 
+
+    /**
      * Sorts the children array once before drawing, instead of every time when a child is added or reordered.
      * This appraoch can improves the performance massively.
-     * @note Don't call this manually unless a child added needs to be removed in the same frame 
+     * @note Don't call this manually unless a child added needs to be removed in the same frame
      */
     virtual void sortAllChildren();
 
     /// @} end of Children and Parent
-    
 
-    
+
+
     /// @{
     /// @name Grid object for effects
-    
+
     /**
      * Returns a grid object that is used when applying effects
-     * 
+     *
      * @return A CCGrid object that is used when applying effects
      * @js NA
      */
@@ -749,13 +749,13 @@ public:
      * @param A CCGrid object that is used when applying effects
      */
     virtual void setGrid(CCGridBase *pGrid);
-    
+
     /// @} end of Grid
-    
-    
+
+
     /// @{
     /// @name Tag & User data
-    
+
     /**
      * Returns a tag that is used to identify the node easily.
      *
@@ -796,12 +796,12 @@ public:
      * @param A interger that indentifies the node.
      */
     RT_REMOVE(  virtual void setTag(int nTag);  )
-    
+
     /**
      * Returns a custom user data pointer
      *
      * You can set everything in UserData pointer, a data block, a structure or an object.
-     * 
+     *
      * @return A custom user data pointer
      * @js NA
      */
@@ -810,17 +810,17 @@ public:
      * Sets a custom user data pointer
      *
      * You can set everything in UserData pointer, a data block, a structure or an object, etc.
-     * @warning Don't forget to release the memroy manually, 
+     * @warning Don't forget to release the memroy manually,
      *          especially before you change this data pointer, and before this node is autoreleased.
      *
      * @return A custom user data pointer
      * @js NA
      */
     virtual void setUserData(void *pUserData);
-    
-    /** 
+
+    /**
      * Returns a user assigned CCObject
-     * 
+     *
      * Similar to userData, but instead of holding a void* it holds an object
      *
      * @return A user assigned CCObject
@@ -838,9 +838,9 @@ public:
      * @param A user assigned CCObject
      */
     virtual void setUserObject(CCObject *pUserObject);
-    
+
     /// @} end of Tag & User Data
-    
+
 private:
     friend class geode::modifier::FieldContainer;
 
@@ -859,10 +859,10 @@ public:
      */
     GEODE_DLL std::string getID();
     /**
-     * Set the string ID of this node. String IDs are a Geode addition 
+     * Set the string ID of this node. String IDs are a Geode addition
      * that are much safer to use to get nodes than absolute indexes
-     * @param id The ID of the node, recommended to be in kebab case 
-     * without any spaces or uppercase letters. If the node is added 
+     * @param id The ID of the node, recommended to be in kebab case
+     * without any spaces or uppercase letters. If the node is added
      * by a mod, use the _spr literal to append the mod ID to it
      * @note Geode addition
      */
@@ -884,7 +884,7 @@ public:
      */
     GEODE_DLL CCNode* getChildByIDRecursive(std::string const& id);
 
-    /** 
+    /**
      * Removes a child from the container by its ID.
      * @param id The ID of the node
      * @note Geode addition
@@ -893,10 +893,10 @@ public:
 
     /**
      * Add a child before a specified existing child
-     * @param child The node to add. The node may not be a child of another  
+     * @param child The node to add. The node may not be a child of another
      * node already
-     * @param before The child the node is added before of. If this is null or 
-     * not a child of this node, the new child will be placed at the start of the 
+     * @param before The child the node is added before of. If this is null or
+     * not a child of this node, the new child will be placed at the start of the
      * child list
      * @note Geode addition
      */
@@ -904,10 +904,10 @@ public:
 
     /**
      * Add a child after an specified existing child
-     * @param child The node to add. The node may not be a child of another  
+     * @param child The node to add. The node may not be a child of another
      * node already
-     * @param after The child the node is added after of. If this is null or 
-     * not a child of this node, the new child will be placed at the end of the 
+     * @param after The child the node is added after of. If this is null or
+     * not a child of this node, the new child will be placed at the end of the
      * child list
      * @note Geode addition
      */
@@ -915,8 +915,8 @@ public:
 
     /**
      * Check if this node's parent or its parents' parent is the given node
-     * @param ancestor The node whose child or subchild this node should be. If 
-     * nullptr, returns true if the node is in the current scene, otherwise 
+     * @param ancestor The node whose child or subchild this node should be. If
+     * nullptr, returns true if the node is in the current scene, otherwise
      * false.
      * @returns True if ancestor is an ancestor of this node
      * @note Geode addition
@@ -924,13 +924,13 @@ public:
     GEODE_DLL bool hasAncestor(CCNode* ancestor);
 
     /**
-     * Set an attribute on a node. Attributes are a system added by Geode, 
-     * where a node may have any sort of extra data associated with it. Used 
-     * for mod intercommunication. For example, a mod that adds scrollbars to 
-     * layers might check if the layer has an attribute set for whether the 
-     * scrollbar should be disabled. The key of the attribute should be 
-     * prefixed with the mod ID, like hjfod.cool-scrollbars/enable. 
-     * @param attribute The attribute key. Should be prefixed with the mod ID, 
+     * Set an attribute on a node. Attributes are a system added by Geode,
+     * where a node may have any sort of extra data associated with it. Used
+     * for mod intercommunication. For example, a mod that adds scrollbars to
+     * layers might check if the layer has an attribute set for whether the
+     * scrollbar should be disabled. The key of the attribute should be
+     * prefixed with the mod ID, like hjfod.cool-scrollbars/enable.
+     * @param attribute The attribute key. Should be prefixed with the mod ID,
      * like hjfod.cool-scrollbars/enable
      * @param value The value of the attribute
      * @note Geode addition
@@ -939,7 +939,7 @@ public:
     /**
      * Get an attribute from the node. Attributes may be anything
      * @param attribute The attribute key
-     * @returns The value, or nullopt if the attribute doesn't exist or if the 
+     * @returns The value, or nullopt if the attribute doesn't exist or if the
      * type didn't match
      * @note Geode addition
      */
@@ -956,15 +956,15 @@ public:
     }
 
     /**
-     * Set the Layout for this node. Used to automatically position children, 
-     * based on the selected layout. In order to apply the layout after a child 
+     * Set the Layout for this node. Used to automatically position children,
+     * based on the selected layout. In order to apply the layout after a child
      * has been added, call updateLayout
      * @param layout Layout to set to this node
      * @param apply Whether to call updateLayout now or not
-     * @param respectAnchor If true, if the target node is 
-     * isIgnoreAnchorPointForPosition, then it is set to false and the children 
-     * are automatically moved to match where they should be positioned. 
-     * Visually, this should result in no difference; however, when dealing with 
+     * @param respectAnchor If true, if the target node is
+     * isIgnoreAnchorPointForPosition, then it is set to false and the children
+     * are automatically moved to match where they should be positioned.
+     * Visually, this should result in no difference; however, when dealing with
      * CCLayers / CCMenus, this will change where the children are located
      * @note Geode addition
      */
@@ -976,14 +976,14 @@ public:
      */
     GEODE_DLL Layout* getLayout();
     /**
-     * Update the layout of this node using the current Layout. If no layout is 
+     * Update the layout of this node using the current Layout. If no layout is
      * set, nothing happens
      * @note Geode addition
      */
     GEODE_DLL void updateLayout(bool updateChildOrder = true);
     /**
-     * Set the layout options for this node. Layout options can be used to 
-     * control how this node is positioned in its parent's Layout, for example 
+     * Set the layout options for this node. Layout options can be used to
+     * control how this node is positioned in its parent's Layout, for example
      * setting the grow size for a flex layout
      * @param options The layout options
      * @param apply Whether to update the layout of the parent node
@@ -1030,12 +1030,12 @@ public:
     GEODE_DLL void removeEventListener(std::string const& id);
     GEODE_DLL geode::EventListenerProtocol* getEventListener(std::string const& id);
     GEODE_DLL size_t getEventListenerCount();
-    
+
     /// @{
     /// @name Shader Program
     /**
      * Return the shader program currently used for this node
-     * 
+     *
      * @return The shader program currelty used for this node
      */
     virtual CCGLProgram* getShaderProgram();
@@ -1047,13 +1047,13 @@ public:
      * @code
      * node->setShaderProgram(CCShaderCache::sharedShaderCache()->programForKey(kCCShader_PositionTextureColor));
      * @endcode
-     * 
+     *
      * @param The shader program which fetchs from CCShaderCache.
      */
     virtual void setShaderProgram(CCGLProgram *pShaderProgram);
     /// @} end of Shader Program
-    
-    
+
+
     /**
      * Returns a camera object that lets you move the node using a gluLookAt
      *
@@ -1066,23 +1066,23 @@ public:
      * @return A CCCamera object that lets you move the node using a gluLookAt
      */
     virtual CCCamera* getCamera();
-    
-    /** 
+
+    /**
      * Returns whether or not the node accepts event callbacks.
-     * 
+     *
      * Running means the node accept event callbacks like onEnter(), onExit(), update()
      *
      * @return Whether or not the node is running.
      */
     virtual bool isRunning();
 
-    
+
     /// @{
     /// @name Script Bindings for lua
 
     /**
      * Registers a script function that will be called in onEnter() & onExit() seires functions.
-     * 
+     *
      * This handler will be removed automatically after onExit() called.
      * @code
      * -- lua sample
@@ -1099,7 +1099,7 @@ public:
      * @warning This method is for internal usage, don't call it manually.
      * @todo Perhaps we should rename it to get/set/removeScriptHandler acoording to the function name style.
      *
-     * @param handler   A number that indicates a lua function. 
+     * @param handler   A number that indicates a lua function.
      */
     virtual void registerScriptHandler(int handler);
     /**
@@ -1116,20 +1116,20 @@ public:
      * @return A number that indicates a lua function.
      */
     inline int getScriptHandler() { return m_nScriptHandler; };
-    
-    /** 
-     * Schedules for lua script. 
+
+    /**
+     * Schedules for lua script.
      * @js NA
      */
     void scheduleUpdateWithPriorityLua(int nHandler, int priority);
-    
+
     /// @}  end Script Bindings
 
 
     /// @{
     /// @name Event Callbacks
-    
-    /** 
+
+    /**
      * Event callback that is invoked every time when CCNode enters the 'stage'.
      * If the CCNode enters the 'stage' with a transition, this event is called when the transition starts.
      * During onEnter you can't access a "sister/brother" node.
@@ -1147,7 +1147,7 @@ public:
      */
     virtual void onEnterTransitionDidFinish();
 
-    /** 
+    /**
      * Event callback that is invoked every time the CCNode leaves the 'stage'.
      * If the CCNode leaves the 'stage' with a transition, this event is called when the transition finishes.
      * During onExit you can't access a sibling node.
@@ -1157,7 +1157,7 @@ public:
      */
     virtual void onExit();
 
-    /** 
+    /**
      * Event callback that is called every time the CCNode leaves the 'stage'.
      * If the CCNode leaves the 'stage' with a transition, this callback is called when the transition starts.
      * @js NA
@@ -1168,12 +1168,12 @@ public:
     /// @} end of event callbacks.
 
 
-    /** 
+    /**
      * Stops all running actions and schedulers
      */
     virtual void cleanup(void);
 
-    /** 
+    /**
      * Override this method to draw your own node.
      * The following GL states will be enabled by default:
      * - glEnableClientState(GL_VERTEX_ARRAY);
@@ -1185,19 +1185,19 @@ public:
      */
     virtual void draw(void);
 
-    /** 
+    /**
      * Visits this node's children and draw them recursively.
      */
     virtual void visit(void);
 
-    
-    /** 
+
+    /**
      * Returns a "local" axis aligned bounding box of the node.
      * The returned box is relative only to its parent.
      *
      * @note This method returns a temporaty variable, so it can't returns const CCRect&
      * @todo Rename to getBoundingBox() in the future versions.
-     * 
+     *
      * @return A "local" axis aligned boudning box of the node.
      * @js getBoundingBox
      */
@@ -1220,8 +1220,8 @@ public:
      * @return A CCActionManager object.
      */
     virtual CCActionManager* getActionManager();
-    
-    /** 
+
+    /**
      * Executes an action, and returns the action that is executed.
      *
      * This node becomes the action's target. Refer to CCAction::getTarget()
@@ -1231,26 +1231,26 @@ public:
      */
     CCAction* runAction(CCAction* action);
 
-    /** 
+    /**
      * Stops and removes all actions from the running action list .
      */
     void stopAllActions(void);
 
-    /** 
+    /**
      * Stops and removes an action from the running action list.
      *
      * @param An action object to be removed.
      */
     void stopAction(CCAction* action);
 
-    /** 
+    /**
      * Removes an action from the running action list by its tag.
      *
      * @param A tag that indicates the action to be removed.
      */
     void stopActionByTag(int tag);
 
-    /** 
+    /**
      * Gets an action from the running action list by its tag.
      *
      * @see setTag(int), getTag().
@@ -1259,7 +1259,7 @@ public:
      */
     CCAction* getActionByTag(int tag);
 
-    /** 
+    /**
      * Returns the numbers of actions that are running plus the ones that are schedule to run (actions in actionsToAdd and actions arrays).
      *
      * Composable actions are counted as 1 action. Example:
@@ -1272,8 +1272,8 @@ public:
     unsigned int numberOfRunningActions(void);
 
     /// @} end of Actions
-    
-    
+
+
     /// @{
     /// @name Scheduler and Timer
 
@@ -1293,8 +1293,8 @@ public:
      * @js NA
      */
     virtual CCScheduler* getScheduler();
-    
-    /** 
+
+    /**
      * Checks whether a selector is scheduled.
      *
      * @param selector      A function selector
@@ -1304,8 +1304,8 @@ public:
      */
     bool isScheduled(SEL_SCHEDULE selector);
 
-    /** 
-     * Schedules the "update" method. 
+    /**
+     * Schedules the "update" method.
      *
      * It will use the order number 0. This method will be called every frame.
      * Scheduled methods with a lower order value will be called before the ones that have a higher order value.
@@ -1314,8 +1314,8 @@ public:
      */
     void scheduleUpdate(void);
 
-    /** 
-     * Schedules the "update" method with a custom priority. 
+    /**
+     * Schedules the "update" method with a custom priority.
      *
      * This selector will be called every frame.
      * Scheduled methods with a lower priority will be called before the ones that have a higher value.
@@ -1324,7 +1324,7 @@ public:
      */
     void scheduleUpdateWithPriority(int priority);
 
-    /* 
+    /*
      * Unschedules the "update" method.
      * @see scheduleUpdate();
      */
@@ -1347,7 +1347,7 @@ public:
      * @lua NA
      */
     void schedule(SEL_SCHEDULE selector, float interval, unsigned int repeat, float delay);
-    
+
     /**
      * Schedules a custom selector with an interval time in seconds.
      * @see schedule(SEL_SCHEDULE, float, unsigned int, float)
@@ -1357,7 +1357,7 @@ public:
      * @lua NA
      */
     void schedule(SEL_SCHEDULE selector, float interval);
-    
+
     /**
      * Schedules a selector that runs only once, with a delay of 0 or larger
      * @see schedule(SEL_SCHEDULE, float, unsigned int, float)
@@ -1367,7 +1367,7 @@ public:
      * @lua NA
      */
     void scheduleOnce(SEL_SCHEDULE selector, float delay);
-    
+
     /**
      * Schedules a custom selector, the scheduled selector will be ticked every frame
      * @see schedule(SEL_SCHEDULE, float, unsigned int, float)
@@ -1376,8 +1376,8 @@ public:
      * @lua NA
      */
     void schedule(SEL_SCHEDULE selector);
-    
-    /** 
+
+    /**
      * Unschedules a custom selector.
      * @see schedule(SEL_SCHEDULE, float, unsigned int, float)
      *
@@ -1386,28 +1386,28 @@ public:
      */
     void unschedule(SEL_SCHEDULE selector);
 
-    /** 
+    /**
      * Unschedule all scheduled selectors: custom selectors, and the 'update' selector.
      * Actions are not affected by this method.
      */
     void unscheduleAllSelectors(void);
 
-    /** 
+    /**
      * Resumes all scheduled selectors and actions.
      * This method is called internally by onEnter
      * @js NA
      * @lua NA
      */
     void resumeSchedulerAndActions(void);
-    /** 
+    /**
      * Pauses all scheduled selectors and actions.
      * This method is called internally by onExit
      * @js NA
      * @lua NA
      */
     void pauseSchedulerAndActions(void);
-    
-    /* 
+
+    /*
      * Update method will be called automatically every frame if "scheduleUpdate" is called, and the node is "live"
      */
     virtual void update(float delta);
@@ -1416,7 +1416,7 @@ public:
 
     /// @{
     /// @name Transformations
-    
+
     /**
      * Performs OpenGL view-matrix transformation based on position, scale, rotation and other attributes.
      */
@@ -1435,8 +1435,8 @@ public:
      * e.g., batchNode->addChild(myCustomNode), while you can only addChild(sprite) before.
      */
     virtual void updateTransform(void);
-    
-    /** 
+
+    /**
      * Returns the matrix that transform the node's (local) space coordinates into the parent's space coordinates.
      * The matrix is in Pixels.
      */
@@ -1446,14 +1446,14 @@ public:
     // 2.2 additions
     virtual const CCAffineTransform nodeToParentTransformFast();
 
-    /** 
+    /**
      * Returns the matrix that transform parent's space coordinates to the node's (local) space coordinates.
      * The matrix is in Pixels.
      */
     RT_REMOVE(  virtual CCAffineTransform parentToNodeTransform(void);      )
     RT_ADD(     virtual const CCAffineTransform parentToNodeTransform(void);)
 
-    /** 
+    /**
      * Returns the world affine transform matrix. The matrix is in Pixels.
      */
     virtual CCAffineTransform nodeToWorldTransform(void);
@@ -1461,49 +1461,49 @@ public:
     // 2.2 additions
     virtual CCAffineTransform nodeToWorldTransformFast();
 
-    /** 
+    /**
      * Returns the inverse world affine transform matrix. The matrix is in Pixels.
      */
     virtual CCAffineTransform worldToNodeTransform(void);
 
     /// @} end of Transformations
-    
-    
+
+
     /// @{
     /// @name Coordinate Converters
-    
-    /** 
+
+    /**
      * Converts a Point to node (local) space coordinates. The result is in Points.
      */
     CCPoint convertToNodeSpace(const CCPoint& worldPoint);
-    
-    /** 
+
+    /**
      * Converts a Point to world space coordinates. The result is in Points.
      */
     CCPoint convertToWorldSpace(const CCPoint& nodePoint);
-    
-    /** 
+
+    /**
      * Converts a Point to node (local) space coordinates. The result is in Points.
      * treating the returned/received node point as anchor relative.
      */
     CCPoint convertToNodeSpaceAR(const CCPoint& worldPoint);
-    
-    /** 
+
+    /**
      * Converts a local Point to world space coordinates.The result is in Points.
      * treating the returned/received node point as anchor relative.
      */
     CCPoint convertToWorldSpaceAR(const CCPoint& nodePoint);
 
-    /** 
+    /**
      * convenience methods which take a CCTouch instead of CCPoint
      */
     CCPoint convertTouchToNodeSpace(CCTouch * touch);
 
-    /** 
+    /**
      * converts a CCTouch (world coordinates) into a local coordinate. This method is AR (Anchor Relative).
      */
     CCPoint convertTouchToNodeSpaceAR(CCTouch * touch);
-    
+
 	/**
      *  Sets the additional transform.
      *
@@ -1513,76 +1513,76 @@ public:
         // create a batchNode
         CCSpriteBatchNode* batch= CCSpriteBatchNode::create("Icon-114.png");
         this->addChild(batch);
-     
+
         // create two sprites, spriteA will be added to batchNode, they are using different textures.
         CCSprite* spriteA = CCSprite::createWithTexture(batch->getTexture());
         CCSprite* spriteB = CCSprite::create("Icon-72.png");
 
-        batch->addChild(spriteA); 
-     
+        batch->addChild(spriteA);
+
         // We can't make spriteB as spriteA's child since they use different textures. So just add it to layer.
         // But we want to simulate `parent-child` relationship for these two node.
-        this->addChild(spriteB); 
+        this->addChild(spriteB);
 
         //position
         spriteA->setPosition(ccp(200, 200));
-     
+
         // Gets the spriteA's transform.
         CCAffineTransform t = spriteA->nodeToParentTransform();
-     
+
         // Sets the additional transform to spriteB, spriteB's postion will based on its pseudo parent i.e. spriteA.
         spriteB->setAdditionalTransform(t);
 
         //scale
         spriteA->setScale(2);
-     
+
         // Gets the spriteA's transform.
         t = spriteA->nodeToParentTransform();
-     
+
         // Sets the additional transform to spriteB, spriteB's scale will based on its pseudo parent i.e. spriteA.
         spriteB->setAdditionalTransform(t);
 
         //rotation
         spriteA->setRotation(20);
-     
+
         // Gets the spriteA's transform.
         t = spriteA->nodeToParentTransform();
-     
+
         // Sets the additional transform to spriteB, spriteB's rotation will based on its pseudo parent i.e. spriteA.
         spriteB->setAdditionalTransform(t);
      */
     void setAdditionalTransform(const CCAffineTransform& additionalTransform);
-    
+
     /// @} end of Coordinate Converters
 
       /// @{
     /// @name component functions
-    /** 
+    /**
      *   gets a component by its name
      */
     CCComponent* getComponent(const char *pName) const;
-    
-    /** 
+
+    /**
      *   adds a component
      */
     virtual bool addComponent(CCComponent *pComponent);
-    
-    /** 
-     *   removes a component by its name      
+
+    /**
+     *   removes a component by its name
      */
     virtual bool removeComponent(const char *pName);
 
-    /** 
-     *   removes a component by its pointer      
+    /**
+     *   removes a component by its pointer
      */
     virtual bool removeComponent(CCComponent *pComponent);
-    
+
     /**
      *   removes all components
      */
     virtual void removeAllComponents();
     /// @} end of component functions
-    
+
     RT_ADD(
         virtual void updateTweenAction(float, const char*);
 
@@ -1600,7 +1600,7 @@ public:
 
 protected:
 	static void resetGlobalOrderOfArrival();
-    
+
 public:
 
 	void sortAllChildrenNoIndex();
@@ -1611,13 +1611,13 @@ public:
 private:
     /// lazy allocs
     void childrenAlloc(void);
-    
+
     /// helper that reorder a child
     void insertChild(CCNode* child, int z);
-    
+
     /// Removes a child, call child->onExit(), do cleanup, remove it from children array.
     void detachChild(CCNode *child, bool doCleanup);
-    
+
     /** Convert cocos2d coordinates to UI windows coordinate.
      * @js NA
      * @lua NA
@@ -1627,73 +1627,73 @@ private:
 protected:
     float m_fRotationX;                 ///< rotation angle on x-axis
     float m_fRotationY;                 ///< rotation angle on y-axis
-    
+
     float m_fScaleX;                    ///< scaling factor on x-axis
     float m_fScaleY;                    ///< scaling factor on y-axis
-    
+
     float m_fVertexZ;                   ///< OpenGL real Z vertex
-    
+
     CCPoint m_obPosition;               ///< position of the node
-    
+
     float m_fSkewX;                     ///< skew angle on x-axis
     float m_fSkewY;                     ///< skew angle on y-axis
-    
+
     CCPoint m_obAnchorPointInPoints;    ///< anchor point in points
     CCPoint m_obAnchorPoint;            ///< anchor point normalized (NOT in points)
-    
+
     CCSize m_obContentSize;             ///< untransformed size of the node
-    
-    
+
+
     CCAffineTransform m_sAdditionalTransform; ///< transform
     CCAffineTransform m_sTransform;     ///< transform
     CCAffineTransform m_sInverse;       ///< transform
-    
+
     CCCamera *m_pCamera;                ///< a camera
-    
+
     CCGridBase *m_pGrid;                ///< a grid
-    
+
     // 2.2 additions
     RT_REMOVE(  int m_nZOrder; )                     ///< z-order value that affects the draw order
-    
+
     CCArray *m_pChildren;               ///< array of children nodes
     CCNode *m_pParent;                  ///< weak reference to parent node
-    
+
     RT_REMOVE(  int m_nTag; )                         ///< a tag. Can be any number you assigned just to identify this node
-    
+
     void *m_pUserData;                  ///< A user assingned void pointer, Can be point to any cpp object
-    CCObject *m_pUserObject;            ///< A user assigned CCObject
-    
+   public: CCObject *m_pUserObject;            ///< A user assigned CCObject
+
     CCGLProgram *m_pShaderProgram;      ///< OpenGL shader
-    
+
     ccGLServerState m_eGLServerState;   ///< OpenGL servier side state
-    
+
     // 2.2 additions
     RT_REMOVE( unsigned int m_uOrderOfArrival; )     ///< used to preserve sequence while sorting children with the same zOrder
-    
+
     CCScheduler *m_pScheduler;          ///< scheduler used to schedule timers and updates
-    
+
     CCActionManager *m_pActionManager;  ///< a pointer to ActionManager singleton, which is used to handle all the actions
-    
+
     bool m_bRunning;                    ///< is running
-    
+
     bool m_bTransformDirty;             ///< transform dirty flag
     bool m_bInverseDirty;               ///< transform dirty flag
     bool m_bAdditionalTransformDirty;   ///< The flag to check whether the additional transform is dirty
 
     // 2.2 additions
     PAD(10); // i dont know if this is related to transform at all, but its here
-    
+
     bool m_bVisible;                    ///< is this node visible
-    
+
     bool m_bIgnoreAnchorPointForPosition; ///< true if the Anchor Point will be (0,0) when you position the CCNode, false otherwise.
                                           ///< Used by CCLayer and CCScene.
-    
+
     bool m_bReorderChildDirty;          ///< children order dirty flag
-    
+
     int m_nScriptHandler;               ///< script handler for onEnter() & onExit(), used in Javascript binding and Lua binding.
     int m_nUpdateScriptHandler;         ///< script handler for update() callback per frame, which is invoked from lua & javascript.
     ccScriptType m_eScriptType;         ///< type of script binding, lua or javascript
-    
+
     CCComponentContainer *m_pComponentContainer;        ///< Dictionary of components
 
     // 2.2 additions
@@ -1706,11 +1706,11 @@ protected:
 #endif
 
 /** CCNodeRGBA is a subclass of CCNode that implements the CCRGBAProtocol protocol.
- 
+
  All features from CCNode are valid, plus the following new features:
  - opacity
  - RGB colors
- 
+
  Opacity/Color propagates into children that conform to the CCRGBAProtocol if cascadeOpacity/cascadeColor is enabled.
  @since v2.1
  */
@@ -1728,29 +1728,29 @@ public:
      *  @lua NA
      */
     virtual ~CCNodeRGBA();
-    
+
     virtual bool init();
-    
+
     /**
      * Allocates and initializes a nodergba.
      * @return A initialized node which is marked as "autorelease".
      */
     static CCNodeRGBA * create(void);
-    
+
     virtual GLubyte getOpacity();
     virtual GLubyte getDisplayedOpacity();
     virtual void setOpacity(GLubyte opacity);
     virtual void updateDisplayedOpacity(GLubyte parentOpacity);
     virtual bool isCascadeOpacityEnabled();
     virtual void setCascadeOpacityEnabled(bool cascadeOpacityEnabled);
-    
+
     virtual const ccColor3B& getColor(void);
     virtual const ccColor3B& getDisplayedColor();
     virtual void setColor(const ccColor3B& color);
     virtual void updateDisplayedColor(const ccColor3B& parentColor);
     virtual bool isCascadeColorEnabled();
     virtual void setCascadeColorEnabled(bool cascadeColorEnabled);
-    
+
     virtual void setOpacityModifyRGB(bool bValue) {CC_UNUSED_PARAM(bValue);};
     virtual bool isOpacityModifyRGB() { return false; };
 
@@ -1780,10 +1780,10 @@ namespace geode {
     class GEODE_DLL AttributeSetFilter : public EventFilter<AttributeSetEvent> {
 	public:
 		using Callback = void(AttributeSetEvent*);
-    
+
     protected:
 		std::string m_targetID;
-	
+
 	public:
         ListenerResult handle(utils::MiniFunction<Callback> fn, AttributeSetEvent* event);
 
