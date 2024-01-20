@@ -181,4 +181,4 @@ class $modify(MenuLayer) {
         opdelete(data);
         log::debug("wow. it didnt crash");
     }
-}
+};
