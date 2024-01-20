@@ -31,6 +31,7 @@ private:
     GeodeNodeMetadata() : m_fieldContainer(new FieldContainer()) {}
 
     virtual ~GeodeNodeMetadata() {
+        geode::log::debug("destructing GeodeNodeMetadata, this: {}, field container: {:X}", this, (uintptr_t)(void*)m_fieldContainer);
         delete m_fieldContainer;
     }
 
@@ -72,7 +73,7 @@ struct ProxyCCNode : Modify<ProxyCCNode, CCNode> {
         if (typeinfo_cast<CCNode*>(this)) {
             return GeodeNodeMetadata::set(this)->m_userObject;
         }
-        // apparently this function is the same as 
+        // apparently this function is the same as
         // CCDirector::getNextScene so yeah
         return m_pUserObject;
     }
