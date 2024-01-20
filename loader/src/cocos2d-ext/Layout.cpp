@@ -175,7 +175,6 @@ struct AxisLayout::Row : public CCObject {
         prio(prio)
     {
         this->autorelease();
-        this->retain();
     }
 
     void accountSpacers(Axis axis, float availableLength, float crossLength) {
