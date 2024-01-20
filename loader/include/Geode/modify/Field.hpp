@@ -24,10 +24,10 @@ namespace geode::modifier {
 
     public:
         ~FieldContainer() {
-            // for (auto i = 0u; i < m_containedFields.size(); i++) {
-            //     m_destructorFunctions[i](m_containedFields[i]);
-            //     operator delete(m_containedFields[i]);
-            // }
+            for (auto i = 0u; i < m_containedFields.size(); i++) {
+                m_destructorFunctions[i](m_containedFields[i]);
+                operator delete(m_containedFields[i]);
+            }
         }
 
         void* getField(size_t index) {

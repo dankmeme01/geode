@@ -28,7 +28,9 @@ private:
     friend class ProxyCCNode;
     friend class cocos2d::CCNode;
 
-    GeodeNodeMetadata() : m_fieldContainer(new FieldContainer()) {}
+    GeodeNodeMetadata() : m_fieldContainer(new FieldContainer()) {
+        this->retain();
+    }
 
     virtual ~GeodeNodeMetadata() {
         // delete m_fieldContainer;
