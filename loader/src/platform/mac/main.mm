@@ -1,18 +1,18 @@
-#include "../../loader/LoaderImpl.hpp"
-#include "../load.hpp"
+#include <Geode/DefaultInclude.hpp>
 
 #import <Cocoa/Cocoa.h>
-#include <Geode/DefaultInclude.hpp>
-#include <Geode/Loader.hpp>
-#include <array>
+#include "../load.hpp"
 #include <dlfcn.h>
-#include <ghc/filesystem.hpp>
-#include <loader/updater.hpp>
 #include <mach-o/dyld.h>
-#include <thread>
-#include <tulip/TulipHook.hpp>
 #include <unistd.h>
+#include <tulip/TulipHook.hpp>
+#include <array>
+#include <ghc/filesystem.hpp>
+#include <Geode/Loader.hpp>
+#include "../../loader/LoaderImpl.hpp"
+#include <thread>
 #include <variant>
+#include <loader/updater.hpp>
 
 using namespace geode::prelude;
 
@@ -121,33 +121,39 @@ extern "C" void fake() {}
 void applicationDidFinishLaunchingHook(void* self, SEL sel, NSNotification* notification) {
     updateGeode();
 
-    std::array<uint8_t, 6> patchBytes = {0x55, 0x48, 0x89, 0xe5, 0x41, 0x57};
+    std::array<uint8_t, 6> patchBytes = {
+        0x55,
+        0x48, 0x89, 0xe5,
+        0x41, 0x57
+    };
 
     auto res = tulip::hook::writeMemory((void*)(base::get() + 0xb030), patchBytes.data(), 6);
-    if (!res) return;
+    if (!res)
+        return;
 
     int exitCode = geodeEntry(nullptr);
-    if (exitCode != 0) return;
+    if (exitCode != 0)
+        return;
 
-    return reinterpret_cast<void (*)(void*, SEL, NSNotification*)>(geode::base::get() + 0xb030)(
-        self, sel, notification
-    );
+    return reinterpret_cast<void (*)(void*, SEL, NSNotification*)>(geode::base::get() + 0xb030)(self, sel, notification);
 }
 
 bool loadGeode() {
-    auto detourAddr = reinterpret_cast<uintptr_t>(&applicationDidFinishLaunchingHook) -
-        geode::base::get() - 0xb035;
+    auto detourAddr = reinterpret_cast<uintptr_t>(&applicationDidFinishLaunchingHook) - geode::base::get() - 0xb035;
     auto detourAddrPtr = reinterpret_cast<uint8_t*>(&detourAddr);
 
     std::array<uint8_t, 5> patchBytes = {
-        0xe9, detourAddrPtr[0], detourAddrPtr[1], detourAddrPtr[2], detourAddrPtr[3]};
+        0xe9, detourAddrPtr[0], detourAddrPtr[1], detourAddrPtr[2], detourAddrPtr[3]
+    };
 
     auto res = tulip::hook::writeMemory((void*)(base::get() + 0xb030), patchBytes.data(), 5);
-    if (!res) return false;
+    if (!res)
+        return false;
 
     return true;
 }
 
 __attribute__((constructor)) void _entry() {
-    if (!loadGeode()) return;
+    if (!loadGeode())
+        return;
 }
