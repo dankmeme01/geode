@@ -175,6 +175,7 @@ struct AxisLayout::Row : public CCObject {
         prio(prio)
     {
         this->autorelease();
+        this->retain();
     }
 
     void accountSpacers(Axis axis, float availableLength, float crossLength) {
@@ -910,7 +911,6 @@ AxisLayout* AxisLayout::setGrowCrossAxis(bool shrink) {
 AxisLayout* AxisLayout::create(Axis axis) {
     auto ret = new AxisLayout(axis);
     ret->autorelease();
-    ret->retain();
     return ret;
 }
 
@@ -921,7 +921,6 @@ RowLayout::RowLayout() : AxisLayout(Axis::Row) {}
 RowLayout* RowLayout::create() {
     auto ret = new RowLayout();
     ret->autorelease();
-    ret->retain();
     return ret;
 }
 
@@ -932,7 +931,6 @@ ColumnLayout::ColumnLayout() : AxisLayout(Axis::Column) {}
 ColumnLayout* ColumnLayout::create() {
     auto ret = new ColumnLayout();
     ret->autorelease();
-    ret->retain();
     return ret;
 }
 
