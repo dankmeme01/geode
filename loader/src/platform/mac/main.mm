@@ -161,6 +161,9 @@ __attribute__((constructor)) void _entry() {
 #include <Geode/modify/CCObject.hpp>
 class $modify(cocos2d::CCObject) {
     void release() {
+        log::debug("this is {:X}", (void*)this);
+        cocos2d::CCObject::release();
         // leaky leaky
     }
 };
+
